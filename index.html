@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Modularity, Dependency Injection, Scala, and the Cake Pattern</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="remark.js" type="text/javascript"> </script>
+    <link rel="stylesheet/less" type="text/css" href="custom.less">
+    <script src="less.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# @Messages("cake.pun")
+## .emph[Modularity, Dependency Injection, Scala, and the Cake Pattern]
+
+<BR />
+<BR />
+Nicholas McAvoy
+
+November 27, 2012
+
+---
+layout: true
+
+# Motivation
+
+---
+
+## .emph[How is building a computer different from writing a computer program?]
+
+---
+
+## .emph[Should it be?]
+
+### "Ideally, software should be assembled from libraries of pre-written components, just as hardware is assembled from pre-fabricated chips or pre-defined integrated circuits."
+Martin Odersky, [Scalable Component Abstractions](http://lamp.epfl.ch/~odersky/papers/ScalableComponent.pdf)
+
+---
+
+## .emph[But is it?]
+
+### "In reality, large parts of software applications are often written written from scratch, so that software production is still more a craft than an industry."
+Martin Odersky, [Scalable Component Abstractions](http://lamp.epfl.ch/~odersky/papers/ScalableComponent.pdf)
+
+---
+layout: true
+
+#Goal: Modularity
+
+- Abstraction is often discussed as an important principle of system design. Generalized solutions to particular problems can solve other problems as they emerge.
+
+--
+
+
+--
+
+- Is modularity given the same weight?
+    - Often attention is paid to the *module system* of a language or ecosystem, but intraapplication modularity is perhaps given less attention.
+
+---
+layout: true
+
+# Dependendency Injection
+
+--
+
+## What is it?
+
+### According to [Wikipedia](https://en.wikipedia.org/wiki/Dependency_injection): 
+
+"Dependency injection is a software design pattern that allows a choice of component to be made at run-time rather than compile time."
+
+--
+
+#### Chief benefit: easy testing by switching out some components for mock versions
+
+---
+
+## Is that all?
+
+- Easy testing is great and all, but that's only scratching the surface.
+
+--
+
+- Dependency injection is a mechanism for modularity.
+  - Components of an application declare their dependencies apart from the dependencies' implementation.
+  - When needed, implementations of different components are "wired together."
+  - Development of different components can happen independently.
+
+---
+
+## How is it achieved on the JVM?
+
+- In Java, usually with IoC (Inversion of Control) frameworks.
+  - Spring and Google Guice prominent examples
+  - Specific implementations wired together at runtime as specified by configuration files
+  - Broadly, the methods used are "setter" injection and "constructor" injection.
+
+--
+name: scaladesign
+
+- A goal in the Scala language design was to make dependency injection feasible through language constructs alone.
+  - Enter the Cake pattern.
+
+---
+layout: true
+
+# The Cake Pattern
+
+---
+
+## Origin
+
+- Principles found in Odersky paper quoted from earlier.
+
+- The post everyone references is from [Jonas Boner in 2008](https://en.wikipedia.org/wiki/Dependency_injection).
+
+---
+
+## What Scala concepts make it possible?
+
+- Easy "multiple inheritance" achieved through mixin composition with `trait`s.
+
+- self-type annotation allows a class to say what the type of `this` must be.
+
+---
+
+## Benefits
+
+- No external framework necessary
+
+- Dependencies strongly typed and statically checked at compile-time
+
+- No reflection necessary
+
+---
+
+## Further motivation
+
+### All the cool kids are doing it.
+
+![https://twitter.com/djspiewak/status/266597200111497216](djspiewak_tweet.png)
+[https://twitter.com/djspiewak/status/266597200111497216](https://twitter.com/djspiewak/status/266597200111497216)
+
+---
+layout: false
+
+# Code example
+
+---
+
+# Stuff I used
+
+- Presentation: [remark.js](http://gnab.github.com/remark/)
+
+- CSS: [LESS](http://lesscss.org/)
+
+- Color scheme: [Color Scheme Designer](http://colorschemedesigner.com/)
+
+---
+
+    </textarea>
+    <div id="slideshow"></div>
+  </body>
+</html>
